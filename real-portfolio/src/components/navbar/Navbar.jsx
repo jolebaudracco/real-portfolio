@@ -9,13 +9,13 @@ const NAvbar = ({navItems, setSelectedScreen}) => {
         <Box sx={{
             color: '#D9D9D9',
             bgcolor: '#2D2D2D',
-            border: 3,
+            border: 1,
             borderColor: '#000000',
-            padding: 2,
+            p: 0,
             display: 'flex',
             justifyContent: 'flex-end',
             flexDirection: 'row',
-            gap: 4,
+            gap: 3,
             fontFamily: 'Fira Code, monospace',
             fontSize: 25,
             fontWeight: 'medium',
@@ -33,8 +33,6 @@ const NAvbar = ({navItems, setSelectedScreen}) => {
                     sx={{
                         width: 40,
                         height: 40,
-                        m: 0,
-                        p: 0,
                     }}
                 />
             </Box>
