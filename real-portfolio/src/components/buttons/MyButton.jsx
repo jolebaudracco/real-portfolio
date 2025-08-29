@@ -1,9 +1,10 @@
 import React from 'react'
 import Button from '@mui/material/Button';
 
-const MyButton = () => {
+const MyButton = ({text}) => {
   return (
-    <Button variant="contained">Contained</Button>
+    <Button variant="contained">Let's go to {text}</Button>
+    
   )
 }
 
