@@ -22,10 +22,10 @@ function App() {
         }}
       >
         <Navbar navItems={navItems} setSelectedScreen={setSelectedScreen}/>
-        {selectedScreen === 'Home' && <Home/>}
-        {selectedScreen === 'Works' && <Works/>}
-        {selectedScreen === 'About Me' && <AboutMe/>}
-        {selectedScreen === 'Contacts' && <Contacts/>}
+        {selectedScreen === 'Home' && <Home setSelectedScreen={setSelectedScreen}/>}
+        {selectedScreen === 'Works' && <Works setSelectedScreen={setSelectedScreen}/>}
+        {selectedScreen === 'About Me' && <AboutMe setSelectedScreen={setSelectedScreen}/>}
+        {selectedScreen === 'Contacts' && <Contacts setSelectedScreen={setSelectedScreen}/>}
       </Box>
     </>
   )}
