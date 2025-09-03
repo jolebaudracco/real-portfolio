@@ -7,9 +7,18 @@ import Home from './components/home/Home'
 import Works from './components/works/Works'
 import AboutMe from './components/aboutMe/AboutMe'
 import Contacts from './components/contacts/Contacts'
+import HouseIcon from '@mui/icons-material/House';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import PersonIcon from '@mui/icons-material/Person';
+import ContactsIcon from '@mui/icons-material/Contacts';
 
 function App() {
-  const navItems = ['Home', 'Works', 'About Me', 'Contacts']
+  const navItems = [
+    {title:'Home', icon: <HouseIcon/>}, 
+    {title:'Works', icon: <GitHubIcon/>}, 
+    {title: 'About Me', icon: <PersonIcon/>}, 
+    {title: 'Contacts', icon: <ContactsIcon/>}
+  ]
 
   const [selectedScreen, setSelectedScreen] = useState('Home')
   console.log(selectedScreen)
