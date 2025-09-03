@@ -1,7 +1,8 @@
 import React from 'react'
 import Box from '@mui/material/Box'
 import Avatar from '@mui/material/Avatar'
-import photo from '../../assets/jole.png'
+import TerminalIcon from '@mui/icons-material/Terminal';
+
 
 const NAvbar = ({navItems, setSelectedScreen}) => {
   return (
@@ -25,16 +26,9 @@ const NAvbar = ({navItems, setSelectedScreen}) => {
                 justifyContent: 'start',
                 alignItems: 'start',
                 mr: 'auto', // Pushes the image to the left
-
+                p: 2
             }}>
-                <Avatar
-                    alt='photo'
-                    src={photo}
-                    sx={{
-                        width: 40,
-                        height: 40,
-                    }}
-                />
+                <TerminalIcon sx={{width: 40, height: 40}}/>
             </Box>
             {navItems.map((item, index) => (
                 // <Box key={index} component="span">{item}</Box>
@@ -43,6 +37,8 @@ const NAvbar = ({navItems, setSelectedScreen}) => {
                     component="span"
                     sx={{
                         cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
                         '&:hover': {
                             color: '#D9D9D9', // This is the hover color
                             backgroundColor: '#2D2D2D',
@@ -50,7 +46,9 @@ const NAvbar = ({navItems, setSelectedScreen}) => {
                     }}
                     onClick={() => setSelectedScreen(item)}
                 >
-                    {item}
+                    {item.icon}
+                    <Box sx={{ml: 1,}}>{item.title}</Box>
+                    
                 </Box>
             ))}
         </Box>
