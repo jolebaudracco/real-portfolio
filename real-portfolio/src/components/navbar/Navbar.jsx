@@ -1,59 +1,105 @@
-import React from 'react'
-import Box from '@mui/material/Box'
-import Avatar from '@mui/material/Avatar'
-import TerminalIcon from '@mui/icons-material/Terminal';
+import React, { useState } from 'react'
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  Box,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText
+} from '@mui/material'
+import MenuIcon from '@mui/icons-material/Menu'
+import TerminalIcon from '@mui/icons-material/Terminal'
 
+const Navbar = ({ navItems, setSelectedScreen }) => {
+  const [open, setOpen] = useState(false) // Estado del Drawer (menú móvil)
 
-const NAvbar = ({navItems, setSelectedScreen}) => {
+  const toggleDrawer = (open) => () => {
+    setOpen(open)
+  }
+
   return (
     <>
-        <Box sx={{
-            color: '#D9D9D9',
-            bgcolor: '#2D2D2D',
-            border: 1,
-            borderColor: '#000000',
-            p: 0,
-            display: 'flex',
-            justifyContent: 'flex-end',
-            flexDirection: 'row',
-            gap: 3,
-            fontFamily: 'Fira Code, monospace',
-            fontSize: 25,
-            fontWeight: 'medium',
-        }}>
-            <Box sx={{
-                display: 'flex',
-                justifyContent: 'start',
-                alignItems: 'start',
-                mr: 'auto', // Pushes the image to the left
-                p: 2
-            }}>
-                <TerminalIcon sx={{width: 40, height: 40}}/>
-            </Box>
+      {/* Barra superior */}
+      <AppBar position="static" sx={{ bgcolor: '#2D2D2D', color: '#D9D9D9' }}>
+        <Toolbar>
+          {/* Logo a la izquierda */}
+          <Box sx={{ display: 'flex', alignItems: 'center', mr: 'auto' }}>
+            <TerminalIcon sx={{ width: 40, height: 40 }} />
+          </Box>
+
+          {/* Menú visible en pantallas grandes */}
+          <Box
+            sx={{
+              display: { xs: 'none', md: 'flex' }, // solo se muestra en escritorio
+              gap: 3,
+              fontFamily: 'Fira Code, monospace',
+              fontSize: 20
+            }}
+          >
             {navItems.map((item, index) => (
-                // <Box key={index} component="span">{item}</Box>
-                <Box 
-                    key={index} 
-                    component="span"
-                    sx={{
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        '&:hover': {
-                            color: '#D9D9D9', // This is the hover color
-                            backgroundColor: '#2D2D2D',
-                        },
-                    }}
-                    onClick={() => setSelectedScreen(item)}
-                >
-                    {item.icon}
-                    <Box sx={{ml: 1,}}>{item.title}</Box>
-                    
-                </Box>
+              <Box
+                key={index}
+                sx={{
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  '&:hover': { color: '#ffffff' }
+                }}
+                onClick={() => setSelectedScreen(item.title)} // mantiene tu lógica
+              >
+                {item.icon}
+                <Typography sx={{ ml: 1 }}>{item.title}</Typography>
+              </Box>
             ))}
+          </Box>
+
+          {/* Botón hamburguesa en móviles */}
+          <IconButton
+            edge="end"
+            color="inherit"
+            aria-label="menu"
+            onClick={toggleDrawer(true)}
+            sx={{ display: { xs: 'flex', md: 'none' } }} // solo se muestra en móvil
+          >
+            <MenuIcon />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+
+      {/* Drawer lateral (solo móviles) */}
+      <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
+        <Box
+          sx={{
+            width: 250,
+            bgcolor: '#2D2D2D',
+            color: '#D9D9D9',
+            height: '100%'
+          }}
+        >
+          <List>
+            {navItems.map((item, index) => (
+              <ListItem key={index} disablePadding>
+                <ListItemButton
+                  onClick={() => {
+                    setSelectedScreen(item.title) // mantiene tu lógica
+                    setOpen(false) // cierra el drawer
+                  }}
+                >
+                  <ListItemIcon sx={{ color: '#D9D9D9' }}>{item.icon}</ListItemIcon>
+                  <ListItemText primary={item.title} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
         </Box>
+      </Drawer>
     </>
-    )
+  )
 }
 
-export default NAvbar
+export default Navbar
