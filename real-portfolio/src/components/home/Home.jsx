@@ -6,6 +6,7 @@ import portfolio from '../../assets/portfolio.png'
 import Typography from '@mui/material/Typography'
 
 
+
 const Home = ({setSelectedScreen}) => {
 const handleClick = () => {
   setSelectedScreen('Contacts')
@@ -14,68 +15,80 @@ const handleClick = () => {
     <>
       <Box sx={{
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: { xs: 'column', md: 'row' }, // responsivo
         alignItems: 'center',
         justifyContent: 'center',
-        gap: 20, // espacio entre texto e imagen
-        p: 20,
+        gap: { xs: 5, md: 20 }, // menos espacio en móvil
+        p: { xs: 5, md: 20 }, // menos padding en móvil
+        textAlign: { xs: 'center', md: 'left' } // centra texto en móvil
       }}>
         <Box sx={{
           fontFamily: 'Fira Code, monospace',
-          // fontSize: { xs: 24, md: 36 }, // responsivo
-          fontWeight: 'bold',
-          textAlign: 'left',
+          fontWeight: 'SemiBold',
           maxWidth: '900px',
         }}>
           <Typography sx={{
-            color: 'white', 
-            fontSize: { xs: 32, md: 56 }
+            color: '#ABB2BF', 
+            fontSize: { xs: 28, md: 56 }, //más chico en móvil
+            lineHeight: 'auto'
             }}>
               Jole Baudracco, a
           </Typography>
 
           <Box sx={{
             display: 'flex',
-            flexDirection: { xs: 'column', md: 'row' }, // responsivo
-            alignItems: { xs: 'flex-start', md: 'center' }, // responsivo
-            gap: 2, // espacio entre Web Developer y and
+            flexDirection: { xs: 'column', md: 'row' }, // stack en móvil, inline en desktop
+            alignItems: { xs: 'center', md: 'center' }, // responsivo
+            gap: 2, 
+            mt: 1, // margen superior para separar del texto
           }}>
             <Typography sx={{
               color: '#C778DD', 
-              fontSize: { xs: 32, md: 56 }}}>
-                Web Developer
+              fontSize: { xs: 28, md: 56 },
+            }}>
+                QA Tester
             </Typography>
             <Typography sx={{
-              color: 'white', 
-              fontSize: { xs: 32, md: 56 }}}>
+              color: '#ABB2BF', 
+              fontSize: { xs: 28, md: 56 },
+              }}>
                 and
             </Typography>
           </Box>
 
           <Typography sx={{
             color: '#C778DD', 
-            fontSize: { xs: 32, md: 56 }}}>
-              QA Tester
+            fontSize: { xs: 28, md: 56 },
+            }}>
+              Web Developer
           </Typography>
+
+          <Typography variant='body1' sx={{
+            color: '#ABB2BF',
+            fontSize: { xs: 28, md: 56 },
+          }}>
+            I craft beautiful, responsive and functional websites.
+            Where technology meets creativity.
+          </Typography>
+          
           <Box onClick={handleClick} sx={{
-          position: 'central', 
-          bottom: 20, 
-          right: 20, 
-          display: 'flex', 
-          justifyContent: 'center',
-          alignItems: 'center',
-          p: 5,
-        }}>
-          <MyButton  text={'Contact Me'}/>
+            mt: 5,
+            display: 'flex',
+            justifyContent: { xs: 'center', md: 'flex-start' }, // centrado en móvil
+            cursor: 'pointer'
+          }}>
+            <MyButton  text={'Contact Me'}/>
+          </Box>
         </Box>
-        </Box>
+
         <Box sx={{
-          width: 300,
-          height: 300,
+          width: { xs: 200, md: 300 }, // más chica en móvil
+          height: { xs: 200, md: 300 },
           borderRadius: '50%', // redondeada, queda más elegante
           overflow: 'hidden',
           boxShadow: 3,
           flexShrink: 0, // evita que se achique
+          mt: { xs: 4, md: 0 } // agrega margen arriba en móvil
         }}>
           <img 
           src={portfolio} 
