@@ -12,6 +12,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import PersonIcon from '@mui/icons-material/Person';
 import ContactsIcon from '@mui/icons-material/Contacts';
 
+
 function App() {
   const navItems = [
     {title:'Home', icon: <HouseIcon/>}, 
@@ -31,10 +32,12 @@ function App() {
         }}
       >
         <Navbar navItems={navItems} setSelectedScreen={setSelectedScreen}/>
+
         {selectedScreen === 'Home' && <Home setSelectedScreen={setSelectedScreen}/>}
         {selectedScreen === 'Works' && <Works setSelectedScreen={setSelectedScreen}/>}
         {selectedScreen === 'About Me' && <AboutMe setSelectedScreen={setSelectedScreen}/>}
         {selectedScreen === 'Contacts' && <Contacts setSelectedScreen={setSelectedScreen}/>}
+
       </Box>
     </>
   )}
